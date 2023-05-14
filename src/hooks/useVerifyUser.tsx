@@ -20,7 +20,6 @@ export function useVerificarUsuario(){
         return;
       }
       onAuthStateChanged(auth, (user: any) => {
-        console.log(user);
         if (user) {
           setUser(user);
         }

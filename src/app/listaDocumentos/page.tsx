@@ -8,8 +8,10 @@ import { toast } from "react-toastify";
 import { DashboardTemplate } from "../dashboard";
 import { useVerificarUsuario } from "@/hooks/useVerifyUser";
 import styles from './styles.module.scss'
+import { useGetDataModels } from "@/hooks/getDataModels";
 export default function ListaDocumentos() {
 const {loading,verifyExistUser} = useVerificarUsuario()
+const { listaModelos } = useGetDataModels()
 
   if (loading) {
     return <Loading />;

@@ -10,7 +10,8 @@ const firebaseConfig = {
   projectId: "copyword-38476",
   storageBucket: "copyword-38476.appspot.com",
   messagingSenderId: "979462838330",
-  appId: "1:979462838330:web:48f81f113ac68c8c77fd03"
+  appId: "1:979462838330:web:48f81f113ac68c8c77fd03",
+  databaseURL: "https://copyword-38476-default-rtdb.firebaseio.com",
 };
 
 // Initialize Firebase
