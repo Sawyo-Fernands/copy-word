@@ -59,6 +59,7 @@ export default function LoginComponent() {
         theme="light"
       />
       <div className={styles.containerMain}>
+        <div className={styles.containerMain}>
         <div className={styles.content}>
           <Image
             src="/copyWordLogin.png"
@@ -91,6 +92,7 @@ export default function LoginComponent() {
           <label htmlFor="" className={styles.strongLabel}>
             <Link href={"/"}>&nbsp;Faça Login</Link>
           </label>
+        </div>
         </div>
       </div>
     </>
