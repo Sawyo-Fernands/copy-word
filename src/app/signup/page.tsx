@@ -33,7 +33,7 @@ export default function LoginComponent() {
         setUser(retornoCadastro);
         setTimeout(() => {
           router.push("/listaDocumentos");
-        }, 200);
+        }, 100);
         return
     }
     if(retornoCadastro == "auth/invalid-email"){

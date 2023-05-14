@@ -15,12 +15,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <>
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} style={{overflow:'hidden'}}>
         <GlobalContextProvider>
           {children}
         </GlobalContextProvider>
         </body>
     </html>
+    </>
+  
   )
 }

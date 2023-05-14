@@ -12,10 +12,11 @@ import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import { authWithGoogle } from "@/services/authWithGoogle";
 import {AiFillGoogleCircle,AiOutlineLogin} from 'react-icons/ai'
+import { ModalRedefinirSenha } from "@/Components/ModalRedefinirSenha";
 export default function LoginComponent() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
+  const [openModalRedefinirSenha,setOpenModalredefinirSenha] = useState(false)
   const { setUser } = useAuthContext();
   const router = useRouter();
   //
@@ -28,7 +29,6 @@ export default function LoginComponent() {
     }
 
     const retornoLogin: any = await logarUsuario(email, senha);
-    console.log({retornoLogin})
     if (retornoLogin.user) {
       toast.success("Usuário autenticado com sucesso!");
       setUser(retornoLogin);
@@ -41,9 +41,14 @@ export default function LoginComponent() {
       return
     }
     if (retornoLogin == "auth/invalid-email") {
-      toast.warn("E-mail Inválido ou senha inválidos");
+      toast.warn("E-mail Inválido");
       document?.getElementById("emailInput")?.focus();
       setEmail("");
+      setSenha('')
+    }
+    if (retornoLogin == "auth/wrong-password") {
+      toast.warn("Senha inválida");
+      document?.getElementById("emailInput")?.focus();
       setSenha('')
     }
   }
@@ -55,7 +60,7 @@ export default function LoginComponent() {
         setUser(result);
         setTimeout(() => {
           router.push("/listaDocumentos");
-        }, 200);
+        }, 100);
       }
       if (result == "auth/invalid-email") {
         toast.warn("E-mail Inválido");
@@ -66,6 +71,10 @@ export default function LoginComponent() {
 
   return (
     <>
+    <ModalRedefinirSenha
+    openModal={openModalRedefinirSenha}
+    setOpenModal={setOpenModalredefinirSenha}
+    />
       <ToastContainer
         position="top-center"
         autoClose={4000}
@@ -108,12 +117,19 @@ export default function LoginComponent() {
           <Button onClick={logarUSuario}><AiOutlineLogin size={27} /> Entrar</Button>
           <Button color="rgb(201, 72, 72)" onClick={()=>autenticarComGoogle()}> <AiFillGoogleCircle  size={27} /> Entrar Com Google</Button>
           </div>
+          <div style={{display:'flex',alignItems:'center',gap:'0.2rem'}}>
           <label htmlFor="" className={styles.labelSingUp}>
             Não tem uma conta?
           </label>
           <label htmlFor="" className={styles.strongLabel}>
             <Link href={"/signup"}>&nbsp;Registre-se</Link>
           </label>
+          </div>
+         
+          <label htmlFor="" className={styles.strongLabel} onClick={()=>setOpenModalredefinirSenha(true)}>
+          &nbsp;Esqueceu senha?
+          </label>
+          
         </div>
       </div>
     </>

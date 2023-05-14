@@ -8,5 +8,5 @@ interface ButtonPros extends ButtonHTMLAttributes<HTMLButtonElement>{
 
 export function Button({children,color,...props}:ButtonPros){
 
-    return <button style={{backgroundColor:`${color ? color : ''} `}} className={styles.button} {...props}>{children}</button>
+    return <button style={{backgroundColor:`${color ? color : '#046ee5'} `}} className={styles.button} {...props}>{children}</button>
 }

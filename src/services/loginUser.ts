@@ -1,8 +1,7 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "./firebase";
 
 export const auth = getAuth(app);
-
 
 export async function logarUsuario(email:string,senha:string){
 
@@ -16,3 +15,4 @@ export async function logarUsuario(email:string,senha:string){
         return error; // retorno nulo em caso de erro
       }
 }
+
