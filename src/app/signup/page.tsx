@@ -19,8 +19,14 @@ export default function LoginComponent() {
   const router = useRouter();
 
   async function cadastrarUsuario() {
+    
+    if(!email || !senha){
+      toast.warn('Preencha os campos!')
+      document?.getElementById("emailInput")?.focus();
+      return
+    }
+
     const retornoCadastro : any = await createNewUser(email, senha);
-    console.log({retornoCadastro});
     
     if(retornoCadastro?.user){
         toast.success("Usuário cadastrado com sucesso!");
@@ -31,9 +37,10 @@ export default function LoginComponent() {
         return
     }
     if(retornoCadastro == "auth/invalid-email"){
-        toast.warn('E-mail Inválido')
+        toast.warn('E-mail Inválido ou senha inválidos')
         document?.getElementById('emailInput')?.focus()
         setEmail('')
+        setSenha("")
     }
   }
 
@@ -68,6 +75,7 @@ export default function LoginComponent() {
             id='emailInput'
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Digite seu e-mail"
+            type="email"
           />
           <Input
             name="senha"

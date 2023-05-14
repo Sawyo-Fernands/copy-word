@@ -20,7 +20,15 @@ export default function LoginComponent() {
   const router = useRouter();
   //
   async function logarUSuario() {
+
+    if(!email || !senha){
+      toast.warn('Preencha os campos!')
+      document?.getElementById("emailInput")?.focus();
+      return
+    }
+
     const retornoLogin: any = await logarUsuario(email, senha);
+    console.log({retornoLogin})
     if (retornoLogin.user) {
       toast.success("Usuário autenticado com sucesso!");
       setUser(retornoLogin);
@@ -28,16 +36,20 @@ export default function LoginComponent() {
         router.push("/listaDocumentos");
       }, 200);
     }
+    if(retornoLogin == "auth/user-not-found"){
+      toast.warn("Usuário não cadastrado! Crie uma conta.");
+      return
+    }
     if (retornoLogin == "auth/invalid-email") {
-      toast.warn("E-mail Inválido");
+      toast.warn("E-mail Inválido ou senha inválidos");
       document?.getElementById("emailInput")?.focus();
       setEmail("");
+      setSenha('')
     }
   }
 
   async function autenticarComGoogle(){
     const result = await authWithGoogle()
-    console.log({result})
     if (result.accessToken) {
         toast.success("Usuário autenticado com sucesso!");
         setUser(result);
@@ -83,6 +95,7 @@ export default function LoginComponent() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Digite seu e-mail"
             id="emailInput"
+            type="email"
           />
           <Input
             name="senha"
