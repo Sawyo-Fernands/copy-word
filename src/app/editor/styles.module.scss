@@ -13,3 +13,27 @@
 
     }
 }
+
+.header{
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    justify-content: space-between;
+    padding: 0.4rem;
+    border-bottom:1px solid rgba(0, 0, 0, 0.1) ;
+
+    .containerButtons{
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+    }
+    .user{
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        cursor: pointer;
+        span{
+            color: #046ee5;
+        }
+    }
+}

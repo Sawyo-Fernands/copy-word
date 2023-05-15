@@ -9,10 +9,11 @@ import { DashboardTemplate } from "../dashboard";
 import { useVerificarUsuario } from "@/hooks/useVerifyUser";
 import styles from './styles.module.scss'
 import { useGetDataModels } from "@/hooks/getDataModels";
+import { AvatarComponent } from "@/Components/Avatar";
 export default function ListaDocumentos() {
-const {loading,verifyExistUser} = useVerificarUsuario()
+const {loading,verifyExistUser,user} = useVerificarUsuario()
 const { listaModelos } = useGetDataModels()
-
+  console.log(user)
   if (loading) {
     return <Loading />;
   }
@@ -24,8 +25,11 @@ const { listaModelos } = useGetDataModels()
     <DashboardTemplate>
       <div className={styles.containerMain}>
         <div className={styles.containerContent}>
-          <header>
-                Header aqui
+          <header className={styles.header}>
+                <div className={styles.user}>
+                  <span>{user?.displayName}</span>
+                  <AvatarComponent name={user?.displayName as string} image={user?.photoURL}  />
+                </div>
             </header>
         <main>
             <div>

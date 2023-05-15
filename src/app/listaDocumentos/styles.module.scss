@@ -7,5 +7,22 @@
     .containerContent{
         z-index: 9999999999999999999999999999999999;
         background-color: white;
+
+        .header{
+            padding: 0.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-bottom:1px solid rgba(0, 0, 0, 0.1) ;
+              .user{
+                display: flex;
+                align-items: center;
+                gap: 0.2rem;
+                cursor: pointer;
+                span{
+                    color: #046ee5;
+                }
+            }
+        }
     }
 }
