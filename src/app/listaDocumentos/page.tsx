@@ -10,10 +10,11 @@ import { useVerificarUsuario } from "@/hooks/useVerifyUser";
 import styles from './styles.module.scss'
 import { useGetDataModels } from "@/hooks/getDataModels";
 import { AvatarComponent } from "@/Components/Avatar";
+import { CardComponent } from "@/Components/Card";
 export default function ListaDocumentos() {
 const {loading,verifyExistUser,user} = useVerificarUsuario()
 const { listaModelos } = useGetDataModels()
-  console.log(user)
+  console.log(listaModelos)
   if (loading) {
     return <Loading />;
   }
@@ -31,10 +32,18 @@ const { listaModelos } = useGetDataModels()
                   <AvatarComponent name={user?.displayName as string} image={user?.photoURL}  />
                 </div>
             </header>
-        <main>
-            <div>
-                    asas
-            </div>
+        <main className={styles.mainListagem}>
+            {
+              listaModelos.map((modelo) => (
+                <CardComponent
+                key={modelo.id}
+                  imagemUrl={modelo.image}
+                  nomeDocumento={modelo.nomeDocumento}
+                  onEditar={()=>{}}
+                  onExcluir={()=>{}}
+                />
+              ))
+            }
         </main>
         </div>
        
