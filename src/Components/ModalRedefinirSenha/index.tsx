@@ -30,7 +30,8 @@ const style = {
     p: 2,
     outline:'none',
     border:'none',
-    borderRadius:'0.25rem'
+    borderRadius:'0.25rem',
+    zIndex:'9999999999999999999999999'
   };
 
 export  function ModalRedefinirSenha({openModal,setOpenModal} :ModalRedefinirSenhaProps) {
@@ -60,14 +61,15 @@ export  function ModalRedefinirSenha({openModal,setOpenModal} :ModalRedefinirSen
   useEffect(()=>{
     if(openModal){
         setTimeout(() => {
+          setEmail('')
             document.getElementById('inputEmail')?.focus()
         }, 200);
     }
   },[openModal])
 
   return (
-    <div>
-      <Modal open={openModal} onClose={handleClose} >
+    <div style={{zIndex:'99999999999999999999999999'}}>
+      <Modal sx={{zIndex:'99999999999999999999999999'}} open={openModal} onClose={handleClose} >
         <Box sx={style}>
         <DialogTitle>Redefinir Senha</DialogTitle>
         <DialogContent >
