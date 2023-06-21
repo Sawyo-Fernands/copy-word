@@ -29,6 +29,10 @@ export default function EditorComponent() {
     return <TelaNoAuth />;
   }
 
+  function imprimirModeloDocumento(){
+    documentEditorRef.current.documentEditor.print();
+  }
+
   return (
     <>
       <ModalNovoDocumento
@@ -55,7 +59,10 @@ export default function EditorComponent() {
                     <AiFillFileAdd size={17} /> <span>Adicionar</span>
                   </div>
                 </Button>
-                <Button onClick={() => {}} variant="contained">
+                <Button
+                  onClick={imprimirModeloDocumento}
+                  variant="contained"
+                >
                   <div
                     style={{
                       display: "flex",
@@ -63,7 +70,7 @@ export default function EditorComponent() {
                       gap: "0.1rem",
                     }}
                   >
-                    <FaMicrophone size={17} /> <span>Narrar</span>
+                    <AiFillFileAdd size={17} /> <span>Imprimir</span>
                   </div>
                 </Button>
               </div>
