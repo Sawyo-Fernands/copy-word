@@ -11,6 +11,7 @@ import styles from './styles.module.scss'
 import { useGetDataModels } from "@/hooks/getDataModels";
 import { AvatarComponent } from "@/Components/Avatar";
 import { CardComponent } from "@/Components/Card";
+import { excluirRegistro } from "@/services/deletRegister";
 export default function ListaDocumentos() {
 const {loading,verifyExistUser,user} = useVerificarUsuario()
 const { listaModelos } = useGetDataModels()
@@ -40,7 +41,7 @@ const { listaModelos } = useGetDataModels()
                   imagemUrl={modelo.image}
                   nomeDocumento={modelo.nomeDocumento}
                   onEditar={()=>{}}
-                  onExcluir={()=>{}}
+                  onExcluir={()=>{excluirRegistro(modelo.id)}}
                 />
               ))
             }
